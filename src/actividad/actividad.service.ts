@@ -14,31 +14,27 @@ export class ActividadService {
     private readonly actividadRepository: Repository<ActividadEntity>,
   ) {}
 
-  async crearActividad(
-    data: Partial<ActividadEntity>,
-  ): Promise<ActividadEntity> {
+  async crearActividad(data: ActividadEntity): Promise<ActividadEntity> {
     if (!data.titulo || data.titulo.length < 15) {
-      throw new BadRequestException(
-        'No cumple requetimientos',
-      );
+      throw new BadRequestException('No cumple requetimientos');
     }
-    const actividad = this.actividadRepository.create({ ...data, estado: 0 });
+    const actividad = this.actividadRepository.create({ ...data });
     return await this.actividadRepository.save(actividad);
   }
 
   async cambiarEstado(
-    actividadID: string,
+    actividadId: string,
     estado: number,
   ): Promise<ActividadEntity> {
     const actividad = await this.actividadRepository.findOne({
-      where: { id: actividadID },
+      where: { id: actividadId },
       relations: ['estudiantes'],
     });
     if (!actividad) {
       throw new NotFoundException('actrividad no encontrada');
     }
     if (estado < 0 || estado > 2) {
-      throw new BadRequestException('estado inválido');
+      throw new BadRequestException('estado no valido');
     }
     if (
       estado === 1 &&

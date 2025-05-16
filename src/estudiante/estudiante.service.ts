@@ -45,7 +45,7 @@ export class EstudianteService {
   async inscribirseActividad(
     estudianteId: string,
     actividadId: string,
-  ): Promise<any> {
+  ): Promise<void> {
     const estudiante = await this.findEstudianteById(estudianteId);
     const actividad = await this.actividadRepository.findOne({
       where: { id: actividadId },
@@ -67,6 +67,5 @@ export class EstudianteService {
     }
     actividad.estudiantes.push(estudiante);
     await this.actividadRepository.save(actividad);
-    return { message: 'inscrito ' };
   }
 }

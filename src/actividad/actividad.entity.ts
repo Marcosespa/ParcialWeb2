@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { EstudianteEntity } from 'src/estudiante/estudiante.entity';
 import { ResenaEntity } from 'src/resena/resena.entity';
 import {
@@ -21,17 +22,11 @@ export class ActividadEntity {
   @Column()
   estado: number;
 
-  // @ManyToMany(() => MovementEntity, movement => movement.artists)
-  //  movements: MovementEntity[];
+
   @ManyToMany(() => EstudianteEntity, (estudiante) => estudiante.actividades)
   estudiantes: EstudianteEntity[];
 
   @OneToMany(() => ResenaEntity, (resena) => resena.actividad)
   resenas: ResenaEntity[];
 
-  //   @ManyToOne(() => UsuarioEntity, usuario => usuario.bonos)
-  // usuario: UsuarioEntity;
-
-  // @ManyToOne(() => ClaseEntity, clase => clase.bonos)
-  // clase: ClaseEntity;
 }

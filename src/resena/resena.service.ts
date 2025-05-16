@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Injectable,
   BadRequestException,
@@ -21,13 +22,13 @@ export class ResenaService {
   ) {}
 
   async agregarResena(
-    estudianteID: string,
-    actividadID: string,
+    estudianteId: string,
+    actividadId: string,
     comentario: string,
     calificacion: number,
-  ): Promise<any> {
+  ): Promise<void> {
     const estudiante = await this.estudianteRepository.findOne({
-      where: { id: estudianteID },
+      where: { id: estudianteId },
       relations: ['actividades'],
     });
     if (!estudiante) {
@@ -35,7 +36,7 @@ export class ResenaService {
     }
 
     const actividad = await this.actividadRepository.findOne({
-      where: { id: actividadID },
+      where: { id: actividadId },
       relations: ['estudiantes'],
     });
     if (!actividad) {
@@ -44,16 +45,16 @@ export class ResenaService {
 
     if (actividad.estado !== 2) {
       throw new BadRequestException(
-        'La actividad debe estar finalizada para agregar una reseña',
+        'actividad no finalizada',
       );
     }
 
     const estudianteInscrito = actividad.estudiantes.some(
-      (e) => e.id === estudianteID,
+      (e) => e.id === estudianteId,
     );
     if (!estudianteInscrito) {
       throw new BadRequestException(
-        'El estudiante no estuvo inscrito en esta actividad',
+        'no esta inscrito en la actividad',
       );
     }
 
@@ -65,6 +66,5 @@ export class ResenaService {
       actividad,
     });
     await this.resenaRepository.save(resena);
-    return { message: 'Reseña agregada' };
   }
 }
