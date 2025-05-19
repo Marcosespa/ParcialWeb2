@@ -228,10 +228,3 @@ POST /resena/1/actividad/1
     "fecha": "2024-03-20"
 }
 ```
-
-## Importante
-
-- Las actividades deben estar finalizadas (estado = 2) para poder agregar reseñas
-- Los estudiantes deben estar inscritos en la actividad para poder agregar reseñas
-- Las calificaciones deben estar en un rango válido (1-5)
-- Las fechas deben estar en formato YYYY-MM-DD
