@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { EstudianteEntity } from 'src/estudiante/estudiante.entity';
-import { ResenaEntity } from 'src/resena/resena.entity';
+import { EstudianteEntity } from '../estudiante/estudiante.entity';
+import { ResenaEntity } from '../resena/resena.entity';
 import {
   Column,
   Entity,
@@ -11,8 +11,8 @@ import {
 
 @Entity()
 export class ActividadEntity {
-  @PrimaryGeneratedColumn('increment', { type: 'bigint' })
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
   @Column()
   titulo: string;
   @Column()

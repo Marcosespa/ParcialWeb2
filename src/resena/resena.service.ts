@@ -22,8 +22,8 @@ export class ResenaService {
   ) {}
 
   async agregarResena(
-    estudianteId: string,
-    actividadId: string,
+    estudianteId: number,
+    actividadId: number,
     comentario: string,
     calificacion: number,
   ): Promise<void> {

@@ -31,7 +31,7 @@ export class EstudianteService {
     return await this.estudianteRepository.save(estudiantefin);
   }
 
-  async findEstudianteById(id: string): Promise<EstudianteEntity> {
+  async findEstudianteById(id: number): Promise<EstudianteEntity> {
     const estudiante = await this.estudianteRepository.findOne({
       where: { id },
       relations: ['actividades', 'resenas'],
@@ -43,8 +43,7 @@ export class EstudianteService {
   }
 
   async inscribirseActividad(
-    estudianteId: string,
-    actividadId: string,
+estudianteId: number, actividadId: number,
   ): Promise<void> {
     const estudiante = await this.findEstudianteById(estudianteId);
     const actividad = await this.actividadRepository.findOne({

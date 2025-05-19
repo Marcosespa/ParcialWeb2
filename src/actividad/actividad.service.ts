@@ -23,7 +23,7 @@ export class ActividadService {
   }
 
   async cambiarEstado(
-    actividadId: string,
+    actividadId: number,
     estado: number,
   ): Promise<ActividadEntity> {
     const actividad = await this.actividadRepository.findOne({
@@ -31,7 +31,7 @@ export class ActividadService {
       relations: ['estudiantes'],
     });
     if (!actividad) {
-      throw new NotFoundException('actrividad no encontrada');
+      throw new NotFoundException('actividad no encontrada');
     }
     if (estado < 0 || estado > 2) {
       throw new BadRequestException('estado no valido');

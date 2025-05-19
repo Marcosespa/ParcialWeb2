@@ -1,11 +1,11 @@
-import { ActividadEntity } from 'src/actividad/actividad.entity';
-import { EstudianteEntity } from 'src/estudiante/estudiante.entity';
+import { ActividadEntity } from '../actividad/actividad.entity';
+import { EstudianteEntity } from '../estudiante/estudiante.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class ResenaEntity {
-  @PrimaryGeneratedColumn('increment', { type: 'bigint' })
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
   @Column()
   comentario: string;
   @Column()
