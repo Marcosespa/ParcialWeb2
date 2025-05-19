@@ -16,7 +16,6 @@ import { ResenaEntity } from './resena/resena.entity';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      // password: 'TU_CONTRASEÑA_AQUÍ',  // si no tienes password, déjalo vacío o elimínalo
       database: 'parcial',
       entities: [EstudianteEntity, ActividadEntity, ResenaEntity],
       synchronize: true,
